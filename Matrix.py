@@ -9,6 +9,10 @@ class Matrix:
         self._num_rows = len(self._storage)
         self._num_cols = len(self._storage[0])
 
+    def __repr__(self):
+        # Complete repr by actually ordering the numbers such that columns look correct
+        return f"Matrix with size: {self.size()} With numbers: \n{self._storage}"
+
     def matrix_multiply(self, matrix_b: Matrix) -> Matrix:
         # Check that matrix size matches
         # Multiply with rules from Calculus classes
@@ -25,8 +29,13 @@ class Matrix:
         #     Transform matrix to simpler forms until 2x2 then compute
         pass
 
+    def get_upper_triangular_form(self) -> Matrix:
+        # Brute force recipe on slides from lecture 5
+        pass
+
     def get_inverse(self) -> Matrix:
         # Use rules from Calculus classes
+        # Gauss-jordan can be used
         pass
 
     def get_transposed(self) -> Matrix:
@@ -34,7 +43,39 @@ class Matrix:
         pass
 
     def num_rows(self) -> int:
+        """Correctly returns the number of rows in the matrix"""
         return self._num_rows
 
     def num_cols(self) -> int:
+        """Correctly returns the number of columns in the matrix"""
         return self._num_cols
+
+    def size(self) -> tuple[int, int]:
+        return self._num_cols, self._num_rows
+
+
+if __name__ == '__main__':
+    matrix = Matrix(
+        [
+            [1, 2, 3],
+            [3, 2, 1],
+            [4, 5, 6]
+        ]
+    )
+
+    matrixB = Matrix(
+        [
+            [1, 2, 3, 4],
+            [3, 2, 1, 4],
+            [4, 5, 6, 4],
+        ]
+    )
+
+    print(matrix.size() == matrixB.size())
+    print(matrixB.num_cols())
+    print(matrixB.num_rows())
+    print(matrixB)
+
+
+
+
