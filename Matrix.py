@@ -60,14 +60,16 @@ class Matrix:
 
         return out_matrix
 
-    def __mul__(self, other: Union[float, Matrix]) -> Matrix:
+    def __mul__(self, other: Union[float, int, Matrix]) -> Matrix:
         # Check that matrix size matches
         # Multiply with rules from Calculus classes
 
         new_matrix = Matrix([x for x in self._storage])
 
-        if other is Matrix:
-            pass
+        if type(other) is Matrix:
+            raise ValueError("Not yet implemented for matrice")
+        elif not (type(other) == int or type(other) == float):
+            raise ValueError("Must be float or int or matrix")
         else:
             for j in range(0, self.num_cols()):
                 for i in range(0, self.num_rows()):
@@ -75,7 +77,6 @@ class Matrix:
                     new_matrix.set_number(j, i, new_num, False)
 
         return new_matrix
-
 
     def __sub__(self, other: Union[float, Matrix]) -> Matrix:
         if other is Matrix:
@@ -158,4 +159,5 @@ if __name__ == '__main__':
     print(matrixB)
     print(matrix)
 
-    print(matrix + matrixB)
+    print(matrix * 2)
+    print(matrix * matrixB)
